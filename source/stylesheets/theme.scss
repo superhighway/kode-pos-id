@@ -1,0 +1,266 @@
+@charset "utf-8";
+@import "compass/css3/transition";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
+
+$headerBg: #E8730C;
+$defaultWidth: 960px;
+
+* {
+  margin: 0; padding: 0;
+}
+
+body {
+  font: 18px/1.4 Roboto, sans-serif;
+  color: darken($headerBg, 32%);
+}
+
+a {
+  text-decoration: none;
+  color: $headerBg;
+}
+
+a, input[type="submit"] {
+  @include transition(all ease-in-out 0.3s);
+}
+
+h1 {
+  font-family: "Fjalla One", sans-serif;
+}
+
+table {
+  text-align: left;
+}
+
+.content {
+  padding-top: 1em;
+  h1 {
+    font-size: 4em;
+  }
+}
+
+.header {
+  font-family: "Fjalla One", sans-serif;
+  padding: 0 1em;
+  height: 3.5em;
+  line-height: 3.5em;
+  background: #E8730C;
+  overflow: hidden;
+
+  h1 {
+    display: inline;
+    @include text-shadow(0 1px 0 lighten($headerBg, 40%));
+  }
+
+  h1, a {
+    margin-right: 0.4em;
+  }
+
+  a {
+    font-size: 1.2em;
+    color: #ddd;
+    background: darken($headerBg, 20%);
+    padding: 0 0.8em;
+    display: inline-block;
+
+    &:hover {
+      background: #eee;
+      color: #333;
+    }
+  }
+}
+
+.body-p-cari-kode-pos a.tab-cari-kode-pos,
+.body-p-cari-daerah a.tab-cari-daerah,
+.body-p-semua-kode-pos a.tab-semua-kode-pos,
+.body-p-semua-kota a.tab-semua-kota {
+  background: #fff;
+  color: #333;
+}
+
+.l-centered {
+  text-align: center;
+  margin: 0 auto;
+  width: $defaultWidth;
+}
+
+.share-buttons {
+  margin-bottom: 1em;
+}
+
+a.share-button {
+  width: 12em;
+  padding: 0.3em 0;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+}
+
+a.share-facebook {
+  background-color: #3b5998;
+  &:hover {
+    background-color: darken(#3b5998, 10%);
+  }
+}
+
+a.share-twitter {
+  background-color: #00acee;
+  &:hover {
+    background-color: darken(#00acee, 10%);
+  }
+}
+
+.listings {
+  font-size: small;
+}
+
+a.listing {
+  &:hover {
+    color: #555;
+  }
+}
+
+form.pencarian {
+  input[type="text"] {
+    font-size: 1em;
+    padding: 0.3em 0.6em;
+    &#place-street {
+      width: 27em;
+    }
+  }
+  margin-bottom: 8em;
+}
+
+form.cari-daerah {
+  input[type="text"] {
+    width: 16em;
+  }
+}
+
+.titles {
+  margin-bottom: 4em;
+}
+
+.hint {
+  color: #888;
+  text-align: left;
+}
+
+input[type="submit"] {
+  -webkit-appearance: none;
+  color: #fff;
+  border: none;
+  background: $headerBg;
+  width: 10em;
+  font-size: 1.4em;
+  height: 1.8em;
+  line-height: 1.8em;
+  cursor: pointer;
+  &:hover {
+    background: #00B233;
+  }
+}
+
+.field {
+  margin-bottom: 0.6em;
+}
+
+.places {
+  margin-bottom: 1em;
+}
+
+.place {
+  margin: 0 0.2em 0.3em 0.2em;
+  display: inline-block;
+  @include box-shadow(0 0 6px #888);
+  border: 1px #ccc solid;
+  width: 200px; height: 200px;
+  position: relative;
+}
+
+.place-content {
+  position: absolute;
+  text-align: left;
+  padding: 0.6em 0.8em;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.place-postal-code {
+  font-size: 1.4em;
+}
+
+.place-city {
+  color: #888;
+}
+
+.place-street {
+  font-size: 0.8em;
+  color: #555;
+}
+
+.postal-code, .city {
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  display: inline-block;
+  height: 4em;
+}
+
+.postal-code {
+  width: 12%;
+}
+
+.city {
+  width: 28%;
+}
+
+.postal-code-content, .city-content {
+  position: absolute;
+  display: block;
+  top: 0; left: 0; right: 0; bottom: 0;
+  text-align: left;
+  padding: 0.2em 0.5em;
+}
+
+a.postal-code-content:hover, a.city-content:hover {
+  border-bottom: 2em solid;
+  color: #333;
+}
+
+form input[type="submit"].submit-inline {
+  font-size: 1.1em;
+  display: none;
+}
+
+.s-collapse-titles {
+  form input[type="text"]#place-street {
+    width: 20em;
+  }
+  form input[type="submit"].submit-inline {
+    display: inline;
+  }
+  form input[type="submit"].submit-bottom {
+    display: none;
+  }
+  form.pencarian {
+    margin-bottom: 2em;
+  }
+  .titles {
+    display: none;
+  }
+}
+
+.js-load-more {
+  display: none;
+}
+
+.autocomplete-suggestions { border: 1px solid #bcd; background: #fed; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; cursor: pointer; }
+.autocomplete-selected { background: #dec; border-top: 1px dashed #bcd; border-bottom: 1px dashed #acb; }
+.autocomplete-suggestions strong { font-weight: normal; color: #339989; }
+
+.no-result {
+  h2 {
+    font-size: 2.2em;
+  }
+}

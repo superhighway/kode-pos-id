@@ -1,0 +1,23 @@
+---
+title: Cari Kode Pos Berdasarkan Alamat
+css_classes: ["l-centered", "p-cari-kode-pos"]
+---
+
+.titles
+  %h1 Cari Kode Pos
+  %h2 Berdasarkan Alamat/Daerah/Kota
+
+%form.pencarian.cari-kode-pos{ action: 'http://localhost:3000/places.json', method: 'GET' }
+  .field
+    %input#place-city(type="text" name="city" placeholder="Contoh: Tangerang")
+    %input#place-street(type="text" name="street" placeholder="Contoh: Jln Sukahati")
+    %input#place-offset(type="hidden" name="offset" value="0")
+    %input#place-limit(type="hidden" name="limit" value="40")
+    %input.submit-inline(type="submit" value="Mulai Pencarian")
+  .field
+    %input.submit-bottom(type="submit" value="Mulai Pencarian")
+
+.places{ "data-template-id" => "template-place", "data-template-no-result-id" => "template-no-result" }
+
+.js-load-more
+  = "..."

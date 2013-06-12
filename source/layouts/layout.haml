@@ -1,0 +1,60 @@
+!!!
+%html
+  %head
+    %meta{ charset: "utf8" }
+    %meta{ content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible" }
+    %title
+      Kode Pos Indonesia:
+      = current_page.data["title"]
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto', media: "all"
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Fjalla+One', media: "all"
+    = stylesheet_link_tag "all", media: "all"
+  - css_classes = (current_page.data["css_classes"] || [])
+  %body{ class: css_classes.map { |c| "body-" + c }.join(" ") }
+    .header
+      %h1 Kode Pos Indonesia
+      = link_to "Cari Kode Pos", '/', class: "js-push tab-cari-kode-pos"
+      = link_to "Cari Daerah", '/cari-daerah.html', class: "js-push tab-cari-daerah"
+      = link_to "Semua Kode Pos", '/semua-kode-pos.html', class: "js-push tab-semua-kode-pos"
+      = link_to "Semua Kota", '/semua-kota.html', class: "js-push tab-semua-kota"
+    %div{ class: "content #{css_classes.join(' ')}" }
+      .share-buttons
+        = link_to "Share di Facebook", 'javascript:;', class: 'share-button share-facebook'
+        = link_to "Share di Twitter", 'javascript:;', class: 'share-button share-twitter'
+      = yield
+    %script(type="text/x-tmpl" id="template-no-result")
+      <div class="no-result">
+      <h2>Wah, Maaf. Ngga ketemu.</h2>
+      <h4>Tertarik membantu melengkapi database kami? Harap kirim<br/>email ke <a href="mailto:">thecatcyborg+kodepos [at] gmail [dot] com</a>.</h4>
+      </div>
+    %script(type="text/x-tmpl" id="template-postal-code")
+      <div class="postal-code">
+      <a href="/cari-daerah.html?postalCode={%=o.postalCode%}" class="postal-code-content">
+      {%=o.postalCode%} ({%=o.total%})
+      </a>
+      </div>
+    %script(type="text/x-tmpl" id="template-city")
+      <div class="city">
+      <a href="/?city={%=o.city%}" class="city-content">
+      {%=o.city%} ({%=o.total%})
+      </a>
+      </div>
+    %script(type="text/x-tmpl" id="template-place")
+      <div class="place">
+      <div class="place-content">
+      <div class="place-postal-code">{%=o.postalCode%}</div>
+      <div class="place-city">{%=o.city%}</div>
+      <div class="place-street">{%=o.street%}</div>
+      </div>
+      </div>
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"
+    = javascript_include_tag "all"
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'CHANGEME']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

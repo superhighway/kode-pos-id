@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <title>
+      Kode Pos Indonesia:
+      Cari Daerah Berdasarkan Kode Pos
+    </title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto" media="all" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Fjalla+One" media="all" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/all.css?1371137902" media="all" rel="stylesheet" type="text/css" />
+  </head>
+  <body class='body-l-centered body-p-cari-daerah'>
+    <div class='header'>
+      <h1>Kode Pos Indonesia</h1>
+      <a class="js-push tab-cari-kode-pos" href="/">Cari Kode Pos</a>
+      <a class="js-push tab-cari-daerah" href="/cari-daerah.html">Cari Daerah</a>
+      <a class="js-push tab-semua-kode-pos" href="/semua-kode-pos.html">Semua Kode Pos</a>
+      <a class="js-push tab-semua-kota" href="/semua-kota.html">Semua Kota</a>
+    </div>
+    <div class='content l-centered p-cari-daerah'>
+      <div class='share-buttons'>
+        <a class="share-button share-facebook" href="javascript:;">Share di Facebook</a>
+        <a class="share-button share-twitter" href="javascript:;">Share di Twitter</a>
+      </div>
+      <div class='titles'>
+        <h1>Cari Nama Daerah</h1>
+        <h2>Berdasarkan Kode Pos</h2>
+      </div>
+      <form action='http://localhost:3000/places.json' class='pencarian cari-daerah' method='GET'>
+        <div class='field'>
+          <input id='place-postalCode' name='postalCode' placeholder='Contoh: 15310' type='text'>
+          <input id='place-offset' name='offset' type='hidden' value='0'>
+          <input id='place-limit' name='limit' type='hidden' value='40'>
+          <input class='submit-inline' id='submit-inline' type='submit' value='Mulai Pencarian'>
+        </div>
+        <div class='field'>
+          <input class='submit-bottom' id='submit-bottom' type='submit' value='Mulai Pencarian'>
+        </div>
+      </form>
+      <div class='places' data-template-id='template-place' data-template-no-result-id='template-no-result'></div>
+      <div class='js-load-more'>
+        ...
+      </div>
+    </div>
+    <script id='template-no-result' type='text/x-tmpl'>
+      <div class="no-result">
+      <h2>Wah, Maaf. Ngga ketemu.</h2>
+      <h4>Tertarik membantu melengkapi database kami? Harap kirim<br/>email ke <a href="mailto:">thecatcyborg+kodepos [at] gmail [dot] com</a>.</h4>
+      </div>
+    </script>
+    <script id='template-postal-code' type='text/x-tmpl'>
+      <div class="postal-code">
+      <a href="/cari-daerah.html?postalCode={%=o.postalCode%}" class="postal-code-content">
+      {%=o.postalCode%} ({%=o.total%})
+      </a>
+      </div>
+    </script>
+    <script id='template-city' type='text/x-tmpl'>
+      <div class="city">
+      <a href="/?city={%=o.city%}" class="city-content">
+      {%=o.city%} ({%=o.total%})
+      </a>
+      </div>
+    </script>
+    <script id='template-place' type='text/x-tmpl'>
+      <div class="place">
+      <div class="place-content">
+      <div class="place-postal-code">{%=o.postalCode%}</div>
+      <div class="place-city">{%=o.city%}</div>
+      <div class="place-street">{%=o.street%}</div>
+      </div>
+      </div>
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+    <script>
+      window.apiHost = "http://kodepos.catcyb.org";
+    </script>
+    <script src="/javascripts/all.js?1371138309" type="text/javascript"></script>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'CHANGEME']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

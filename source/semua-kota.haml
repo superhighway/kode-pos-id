@@ -8,7 +8,6 @@ css_classes: ["l-centered", "p-semua-kota"]
     .city{ "ng-repeat" => "place in list" }
       = link_to "{{ place.city }} ({{ place.total }})", ".?city={{ place.city }}", class: "city-content"
 
+  %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")
   %div{ "ng-show" => "loading" }
     = "..."
-
-  %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")

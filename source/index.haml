@@ -16,9 +16,6 @@ css_classes: ["l-centered", "p-cari-kode-pos"]
     .field{ "ng-hide" => "submitted" }
       %input.submit-bottom(type="submit" value="Mulai Pencarian")
 
-  %div{ "ng-show" => "loading" }
-    = "..."
-
   .places
     = partial "partials/no-result"
     .place{ "ng-repeat" => "place in list" }
@@ -31,3 +28,6 @@ css_classes: ["l-centered", "p-cari-kode-pos"]
           {{ place.street }}
 
   %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")
+  %div{ "ng-show" => "loading" }
+    = "..."
+

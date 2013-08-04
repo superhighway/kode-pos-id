@@ -3,7 +3,7 @@ title: Listing Semua Kode Pos
 css_classes: ["l-centered", "p-semua-kode-pos"]
 ---
 
-%div{ "ng-controller" => "PostalCodesCtrl" }
+.ng-cloak{ "ng-controller" => "PostalCodesCtrl" }
   .places
     .postal-code{ "ng-repeat" => "place in list" }
       = link_to "{{ place.postalCode }} ({{ place.total }})", "cari-daerah/?postalCode={{ place.postalCode }}", class: "postal-code-content"

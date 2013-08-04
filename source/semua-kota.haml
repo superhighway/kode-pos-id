@@ -3,7 +3,7 @@ title: Listing Semua Kode Pos
 css_classes: ["l-centered", "p-semua-kota"]
 ---
 
-%div{ "ng-controller" => "CitiesCtrl" }
+.ng-cloak{ "ng-controller" => "CitiesCtrl" }
   .places
     .city{ "ng-repeat" => "place in list" }
       = link_to "{{ place.city }} ({{ place.total }})", ".?city={{ place.city }}", class: "city-content"

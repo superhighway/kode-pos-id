@@ -239,3 +239,7 @@ form input[type="submit"].submit-inline {
     font-size: 2.2em;
   }
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}

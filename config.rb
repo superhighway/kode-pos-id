@@ -11,6 +11,14 @@
 #   config.output_style = :compact
 # end
 
+if ENV["DEPLOY"]
+  set :asset_root, "http://nyan.catcyb.org/kode-pos-id"
+  set :api_host, 'http://kodepos.catcyb.org'
+else
+  set :asset_root, 'http://localhost:4567'
+  set :api_host, 'http://localhost:3000'
+end
+
 activate :deploy do |deploy|
   deploy.method = :git
   deploy.remote = "git@github.com:catcyborg/kode-pos-id.git"
@@ -56,6 +64,8 @@ end
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
+
+activate :directory_indexes
 
 # Build-specific configuration
 configure :build do

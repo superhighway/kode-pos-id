@@ -6,40 +6,41 @@
     %title
       Kode Pos Indonesia:
       = current_page.data["title"]
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto', media: "all"
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Fjalla+One', media: "all"
-    = stylesheet_link_tag "all", media: "all"
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', media: "all"
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Playfair+Display', media: "all"
+    = stylesheet_link_tag "#{asset_root}/stylesheets/all.css", media: "all"
   - css_classes = (current_page.data["css_classes"] || [])
   %body{ class: css_classes.map { |c| "body-" + c }.join(" ") }
     .header
       %h1 Kode Pos Indonesia
-      = link_to "Cari Kode Pos", '/', class: "js-push tab-cari-kode-pos"
-      = link_to "Cari Daerah", '/cari-daerah.html', class: "js-push tab-cari-daerah"
-      = link_to "Semua Kode Pos", '/semua-kode-pos.html', class: "js-push tab-semua-kode-pos"
-      = link_to "Semua Kota", '/semua-kota.html', class: "js-push tab-semua-kota"
+      = link_to "Cari Kode Pos", '.', class: "js-push tab-cari-kode-pos"
+      = link_to "Cari Daerah", 'cari-daerah', class: "js-push tab-cari-daerah"
+      = link_to "Semua Kode Pos", 'semua-kode-pos', class: "js-push tab-semua-kode-pos"
+      = link_to "Semua Kota", 'semua-kota', class: "js-push tab-semua-kota"
     %div{ class: "content #{css_classes.join(' ')}" }
       .share-buttons
-        = link_to "Share di Facebook", 'javascript:;', class: 'share-button share-facebook'
-        = link_to "Share di Twitter", 'javascript:;', class: 'share-button share-twitter'
+        Bagikan di:
+        = link_to "Facebook", 'javascript:;',  class: 'share-button share-facebook'
+        = link_to "Twitter", 'javascript:;', class: 'share-button share-twitter'
       = yield
-    %script(type="text/x-tmpl" id="template-no-result")
+    %script(type="text/ng-template" id="no-result.html")
       <div class="no-result">
       <h2>Wah, Maaf. Ngga ketemu.</h2>
       <h4>Tertarik membantu melengkapi database kami? Harap kirim<br/>email ke <a href="mailto:">thecatcyborg+kodepos [at] gmail [dot] com</a>.</h4>
       </div>
-    %script(type="text/x-tmpl" id="template-postal-code")
+    %script(type="text/ng-template" id="postal-code.html")
       <div class="postal-code">
-      <a href="/cari-daerah.html?postalCode={%=o.postalCode%}" class="postal-code-content">
+      <a href="cari-daerah.html?postalCode={%=o.postalCode%}" class="postal-code-content">
       {%=o.postalCode%} ({%=o.total%})
       </a>
       </div>
-    %script(type="text/x-tmpl" id="template-city")
+    %script(type="text/ng-template" id="city.html")
       <div class="city">
-      <a href="/?city={%=o.city%}" class="city-content">
+      <a href=".?city={%=o.city%}" class="city-content">
       {%=o.city%} ({%=o.total%})
       </a>
       </div>
-    %script(type="text/x-tmpl" id="template-place")
+    %script(type="text/ng-template" id="place.html")
       <div class="place">
       <div class="place-content">
       <div class="place-postal-code">{%=o.postalCode%}</div>
@@ -48,7 +49,10 @@
       </div>
       </div>
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"
-    = javascript_include_tag "all"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"
+    :javascript
+      window.apiHost = "#{api_host}";
+    = javascript_include_tag "#{asset_root}/javascripts/all.js"
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'CHANGEME']);

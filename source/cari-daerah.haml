@@ -7,7 +7,7 @@ css_classes: ["l-centered", "p-cari-daerah"]
   %h1 Cari Nama Daerah
   %h2 Berdasarkan Kode Pos
 
-%form.pencarian.cari-daerah{ action: 'http://localhost:3000/places.json', method: 'GET' }
+%form.pencarian.cari-daerah{ action: "#{api_host}/places.json", method: 'GET' }
   .field
     %input#place-postalCode(type="text" name="postalCode" placeholder="Contoh: 15310")
     %input#place-offset(type="hidden" name="offset" value="0")

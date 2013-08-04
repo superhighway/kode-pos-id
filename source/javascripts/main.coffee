@@ -1,4 +1,4 @@
-host = 'http://localhost:3000'
+host = apiHost
 $w = $ window
 $d = $ document
 $b = $ 'body'
@@ -114,6 +114,7 @@ if $searchForm.length > 0
   $searchForm.submit() if shouldSubmit
 
 $('.share-facebook').on 'click', ->
+  $t = $ this
   sharer = "https://www.facebook.com/sharer/sharer.php?u=";
   window.open(sharer + ($t.data('url') || window.location.href), 'sharer', 'width=626,height=436');
 

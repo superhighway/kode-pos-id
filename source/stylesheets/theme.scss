@@ -4,21 +4,22 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/images";
 
-$headerBg: #E8730C;
+$headerBg: #72FF96;
+$headerBgCompl: #3a3705;
 $defaultWidth: 960px;
 
 * {
   margin: 0; padding: 0;
 }
 
-body {
-  font: 18px/1.4 Roboto, sans-serif;
-  color: darken($headerBg, 32%);
+body, form, input {
+  font: 18px/1.4 "Playfair Display", serif;
+  color: $headerBgCompl;
 }
 
 a {
   text-decoration: none;
-  color: $headerBg;
+  color: $headerBgCompl;
 }
 
 a, input[type="submit"] {
@@ -26,7 +27,7 @@ a, input[type="submit"] {
 }
 
 h1 {
-  font-family: "Fjalla One", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 table {
@@ -41,16 +42,15 @@ table {
 }
 
 .header {
-  font-family: "Fjalla One", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   padding: 0 1em;
   height: 3.5em;
   line-height: 3.5em;
-  background: #E8730C;
+  background: $headerBg;
   overflow: hidden;
 
   h1 {
     display: inline;
-    @include text-shadow(0 1px 0 lighten($headerBg, 40%));
   }
 
   h1, a {
@@ -60,7 +60,7 @@ table {
   a {
     font-size: 1.2em;
     color: #ddd;
-    background: darken($headerBg, 20%);
+    background: darken($headerBg, 50%);
     padding: 0 0.8em;
     display: inline-block;
 
@@ -90,10 +90,8 @@ table {
 }
 
 a.share-button {
-  width: 12em;
-  padding: 0.3em 0;
+  padding: 0.3em 1em;
   color: #fff;
-  display: inline-block;
   text-align: center;
 }
 
@@ -151,7 +149,7 @@ input[type="submit"] {
   -webkit-appearance: none;
   color: #fff;
   border: none;
-  background: $headerBg;
+  background: #FF7D3C;
   width: 10em;
   font-size: 1.4em;
   height: 1.8em;

@@ -3,20 +3,30 @@ title: Cari Daerah Berdasarkan Kode Pos
 css_classes: ["l-centered", "p-cari-daerah"]
 ---
 
-.titles
-  %h1 Cari Nama Daerah
-  %h2 Berdasarkan Kode Pos
+%div{ "ng-controller" => "PlacesCtrl" }
+  .titles{ "ng-hide" => "submitted" }
+    %h1 Cari Nama Daerah
+    %h2 Berdasarkan Kode Pos
 
-%form.pencarian.cari-daerah{ action: "#{api_host}/places.json", method: 'GET' }
-  .field
-    %input#place-postalCode(type="text" name="postalCode" placeholder="Contoh: 15310")
-    %input#place-offset(type="hidden" name="offset" value="0")
-    %input#place-limit(type="hidden" name="limit" value="40")
-    %input.submit-inline(type="submit" id="submit-inline" value="Mulai Pencarian")
-  .field
-    %input.submit-bottom(type="submit" id="submit-bottom" value="Mulai Pencarian")
+  %form.pencarian.cari-daerah{ "ng-submit" => "submit()" }
+    .field
+      %input#place-postalCode(type="text" ng-model="place.postalCode" name="postalCode" placeholder="Contoh: 15310")
+      %input.submit-inline(type="submit" id="submit-inline" value="Mulai Pencarian" ng-show="submitted")
+    .field{ "ng-hide" => "submitted" }
+      %input.submit-bottom(type="submit" id="submit-bottom" value="Mulai Pencarian")
 
-.places{ "data-template-id" => "template-place", "data-template-no-result-id" => "template-no-result" }
+  %div{ "ng-show" => "loading" }
+    = "..."
 
-.js-load-more
-  = "..."
+  .places
+    = partial "partials/no-result"
+    .place{ "ng-repeat" => "place in list" }
+      .place-content
+        .place-postal-code
+          {{ place.postalCode }}
+        .place-city
+          {{ place.city }}
+        .place-street
+          {{ place.street }}
+
+  %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")

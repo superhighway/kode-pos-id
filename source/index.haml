@@ -3,21 +3,31 @@ title: Cari Kode Pos Berdasarkan Alamat
 css_classes: ["l-centered", "p-cari-kode-pos"]
 ---
 
-.titles
-  %h1 Cari Kode Pos
-  %h2 Berdasarkan Alamat/Daerah/Kota
+%div{ "ng-controller" => "PlacesCtrl" }
+  .titles{ "ng-hide" => "submitted" }
+    %h1 Cari Kode Pos
+    %h2 Berdasarkan Alamat/Daerah/Kota
 
-%form.pencarian.cari-kode-pos{ action: "#{api_host}/places.json", method: 'GET' }
-  .field
-    %input#place-city(type="text" name="city" placeholder="Contoh: Tangerang")
-    %input#place-street(type="text" name="street" placeholder="Contoh: Jln Sukahati")
-    %input#place-offset(type="hidden" name="offset" value="0")
-    %input#place-limit(type="hidden" name="limit" value="40")
-    %input.submit-inline(type="submit" value="Mulai Pencarian")
-  .field
-    %input.submit-bottom(type="submit" value="Mulai Pencarian")
+  %form.pencarian.cari-kode-pos{ "ng-submit" => "submit()" }
+    .field
+      %input#place-city(type="text" ng-model="place.city" name="city" placeholder="Contoh: Tangerang")
+      %input#place-street(type="text" ng-model="place.street" name="street" placeholder="Contoh: Jln Sukahati")
+      %input.submit-inline(type="submit" value="Mulai Pencarian" ng-show="submitted")
+    .field{ "ng-hide" => "submitted" }
+      %input.submit-bottom(type="submit" value="Mulai Pencarian")
 
-.places{ "data-template-id" => "template-place", "data-template-no-result-id" => "template-no-result" }
+  %div{ "ng-show" => "loading" }
+    = "..."
 
-.js-load-more
-  = "..."
+  .places
+    = partial "partials/no-result"
+    .place{ "ng-repeat" => "place in list" }
+      .place-content
+        .place-postal-code
+          {{ place.postalCode }}
+        .place-city
+          {{ place.city }}
+        .place-street
+          {{ place.street }}
+
+  %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")

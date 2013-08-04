@@ -3,6 +3,12 @@ title: Listing Semua Kode Pos
 css_classes: ["l-centered", "p-semua-kota"]
 ---
 
-.places{ "data-template-id" => "template-city" }
-.js-load-more{ "data-url" => "#{api_host}/cities.json", style: "display: block;" }
-  = "..."
+%div{ "ng-controller" => "CitiesCtrl" }
+  .places
+    .city{ "ng-repeat" => "place in list" }
+      = link_to "{{ place.city }} ({{ place.total }})", ".?city={{ place.city }}", class: "city-content"
+
+  %div{ "ng-show" => "loading" }
+    = "..."
+
+  %div(infinite-scroll="fetchNext()" infinite-scroll-distance="3")

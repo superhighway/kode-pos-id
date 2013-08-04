@@ -127,7 +127,7 @@ form.pencarian {
       width: 27em;
     }
   }
-  margin-bottom: 8em;
+  margin-bottom: 2em;
 }
 
 form.cari-daerah {
@@ -227,29 +227,6 @@ a.postal-code-content:hover, a.city-content:hover {
 
 form input[type="submit"].submit-inline {
   font-size: 1.1em;
-  display: none;
-}
-
-.s-collapse-titles {
-  form input[type="text"]#place-street {
-    width: 20em;
-  }
-  form input[type="submit"].submit-inline {
-    display: inline;
-  }
-  form input[type="submit"].submit-bottom {
-    display: none;
-  }
-  form.pencarian {
-    margin-bottom: 2em;
-  }
-  .titles {
-    display: none;
-  }
-}
-
-.js-load-more {
-  display: none;
 }
 
 .autocomplete-suggestions { border: 1px solid #bcd; background: #fed; overflow: auto; }

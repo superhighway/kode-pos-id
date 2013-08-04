@@ -1,0 +1,3 @@
+#!/bin/bash
+export DEPLOY=1
+middleman build && middleman deploy
